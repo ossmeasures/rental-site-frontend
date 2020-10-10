@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "name": "my-react-app",
+    "slug": "my-react-app",
+    "description": "",
+    "platforms": ["web"]
+  }
+}
