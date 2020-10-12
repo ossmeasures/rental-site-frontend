@@ -1,16 +1,15 @@
-import React from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
-import { Button, CheckBox, Layout } from '@ui-kitten/components';
-import { Formik, FormikProps } from 'formik';
-import { SignInScreenProps } from '../../navigation/auth.navigator';
-import { AppRoute } from '../../navigation/app-routes';
-import { FormInput } from '../../components/form-input.component';
-import { EyeIcon, EyeOffIcon } from '../../assets/icons';
-import { SignInData, SignInSchema } from '../../data/sign-in.model';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import React from "react";
+import { ImageBackground, StyleSheet, View } from "react-native";
+import { Button, CheckBox, Layout } from "@ui-kitten/components";
+import { Formik, FormikProps } from "formik";
+import { SignInScreenProps } from "../../navigation/auth.navigator";
+import { AppRoute } from "../../navigation/app-routes";
+import { FormInput } from "../../components/form-input.component";
+import { EyeIcon, EyeOffIcon } from "../../assets/icons";
+import { SignInData, SignInSchema } from "../../data/sign-in.model";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 export const SignInScreen = (props: SignInScreenProps) => {
-
   const [shouldRemember, setShouldRemember] = React.useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = React.useState<boolean>(false);
 
@@ -46,15 +45,15 @@ export const SignInScreen = (props: SignInScreenProps) => {
   const renderForm = (props: FormikProps<SignInData>): React.ReactFragment => (
     <React.Fragment>
       <FormInput
-        id='email'
+        id="email"
         style={styles.formControl}
-        placeholder='Email'
-        keyboardType='email-address'
+        placeholder="Email"
+        keyboardType="email-address"
       />
       <FormInput
-        id='password'
+        id="password"
         style={styles.formControl}
-        placeholder='Password'
+        placeholder="Password"
         secureTextEntry={!passwordVisible}
         accessoryRight={renderPasswordIcon}
       />
@@ -62,19 +61,19 @@ export const SignInScreen = (props: SignInScreenProps) => {
         <CheckBox
           style={styles.formControl}
           checked={shouldRemember}
-          onChange={setShouldRemember}>
+          onChange={setShouldRemember}
+        >
           Remember Me
         </CheckBox>
         <Button
-          appearance='ghost'
-          status='basic'
-          onPress={navigateResetPassword}>
+          appearance="ghost"
+          status="basic"
+          onPress={navigateResetPassword}
+        >
           Forgot password?
         </Button>
       </View>
-      <Button
-        style={styles.submitButton}
-        onPress={props.handleSubmit}>
+      <Button style={styles.submitButton} onPress={props.handleSubmit}>
         SIGN IN
       </Button>
     </React.Fragment>
@@ -84,20 +83,22 @@ export const SignInScreen = (props: SignInScreenProps) => {
     <React.Fragment>
       <ImageBackground
         style={styles.appBar}
-        source={require('../../assets/image-background.jpeg')}
+        source={require("../../assets/constructionItem.jpeg")}
       />
       <Layout style={styles.formContainer}>
         <Formik
           initialValues={SignInData.empty()}
           validationSchema={SignInSchema}
-          onSubmit={onFormSubmit}>
+          onSubmit={onFormSubmit}
+        >
           {renderForm}
         </Formik>
         <Button
           style={styles.noAccountButton}
-          appearance='ghost'
-          status='basic'
-          onPress={navigateSignUp}>
+          appearance="ghost"
+          status="basic"
+          onPress={navigateSignUp}
+        >
           Don't have an account?
         </Button>
       </Layout>
@@ -115,8 +116,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   resetPasswordContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   formControl: {
     marginVertical: 4,
@@ -125,6 +126,6 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
   noAccountButton: {
-    alignSelf: 'center',
+    alignSelf: "center",
   },
 });

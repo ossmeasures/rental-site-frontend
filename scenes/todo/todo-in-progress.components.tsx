@@ -1,5 +1,5 @@
-import React from 'react';
-import { ListRenderItemInfo } from 'react-native';
+import React from "react";
+import { ListRenderItemInfo } from "react-native";
 import {
   Input,
   Layout,
@@ -10,12 +10,12 @@ import {
   StyleService,
   Text,
   useStyleSheet,
-} from '@ui-kitten/components';
-import { TodoInProgressScreenProps } from '../../navigation/todo.navigator';
-import { AppRoute } from '../../navigation/app-routes';
-import { ProgressBar } from '../../components/progress-bar.component';
-import { SearchIcon } from '../../assets/icons';
-import { Todo } from '../../data/todo.model';
+} from "@ui-kitten/components";
+import { TodoInProgressScreenProps } from "../../navigation/todo.navigator";
+import { AppRoute } from "../../navigation/app-routes";
+import { ProgressBar } from "../../components/progress-bar.component";
+import { SearchIcon } from "../../assets/icons";
+import { Todo } from "../../data/todo.model";
 
 const allTodos: Todo[] = [
   Todo.mocked0(),
@@ -29,10 +29,11 @@ const allTodos: Todo[] = [
   Todo.mocked2(),
 ];
 
-export const TodoInProgressScreen = (props: TodoInProgressScreenProps): ListElement => {
-
+export const TodoInProgressScreen = (
+  props: TodoInProgressScreenProps
+): ListElement => {
   const [todos, setTodos] = React.useState<Todo[]>(allTodos);
-  const [query, setQuery] = React.useState<string>('');
+  const [query, setQuery] = React.useState<string>("");
   const styles = useStyleSheet(themedStyles);
 
   const onChangeQuery = (query: string): void => {
@@ -49,16 +50,13 @@ export const TodoInProgressScreen = (props: TodoInProgressScreenProps): ListElem
     props.navigation.navigate(AppRoute.TODO_DETAILS, { todo });
   };
 
-  const renderTodo = ({ item, index }: ListRenderItemInfo<Todo>): ListItemElement => (
-    <ListItem
-      style={styles.item}
-      onPress={() => navigateTodoDetails(index)}>
-      <Text category='s1'>
-        {item.title}
-      </Text>
-      <Text
-        appearance='hint'
-        category='c1'>
+  const renderTodo = ({
+    item,
+    index,
+  }: ListRenderItemInfo<Todo>): ListItemElement => (
+    <ListItem style={styles.item} onPress={() => navigateTodoDetails(index)}>
+      <Text category="s1">{item.title}</Text>
+      <Text appearance="hint" category="c1">
         {item.description}
       </Text>
       <ProgressBar
@@ -73,16 +71,12 @@ export const TodoInProgressScreen = (props: TodoInProgressScreenProps): ListElem
     <Layout style={styles.container}>
       <Input
         style={styles.filterInput}
-        placeholder='Search'
+        placeholder="Search"
         value={query}
         accessoryLeft={SearchIcon}
         onChangeText={onChangeQuery}
       />
-      <List
-        style={styles.list}
-        data={todos}
-        renderItem={renderTodo}
-      />
+      <List style={styles.list} data={todos} renderItem={renderTodo} />
     </Layout>
   );
 };
@@ -97,17 +91,15 @@ const themedStyles = StyleService.create({
   },
   list: {
     flex: 1,
-    backgroundColor: 'background-basic-color-1',
+    backgroundColor: "background-basic-color-1",
   },
   item: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    flexDirection: "column",
+    alignItems: "flex-start",
     paddingHorizontal: 12,
   },
   itemProgressBar: {
-    width: '50%',
+    width: "50%",
     marginVertical: 12,
   },
 });
-
-

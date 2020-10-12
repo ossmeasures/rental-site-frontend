@@ -6,6 +6,7 @@ import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { AppNavigator } from "./navigation/app.navigator";
 import { AppRoute } from "./navigation/app-routes";
+import { default as theme } from "./theme.json"; // <-- Import app theme
 
 export default (): React.ReactFragment => {
   const isAuthorized: boolean = false;
@@ -14,7 +15,7 @@ export default (): React.ReactFragment => {
     <React.Fragment>
       <IconRegistry icons={EvaIconsPack} />
 
-      <ApplicationProvider mapping={mapping} theme={light}>
+      <ApplicationProvider mapping={mapping} theme={{ ...light, ...theme }}>
         <SafeAreaProvider>
           <NavigationContainer>
             <AppNavigator

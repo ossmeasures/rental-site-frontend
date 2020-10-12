@@ -1,19 +1,28 @@
-import React from 'react';
-import { Divider, Tab, TabBar, TabElement, MenuItem } from '@ui-kitten/components';
-import { TodoScreenProps } from '../../navigation/todo.navigator';
-import { AppRoute } from '../../navigation/app-routes';
-import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
-import { Toolbar } from '../../components/toolbar.component';
-import { InfoIcon, LogoutIcon, MenuIcon } from '../../assets/icons';
-
+import React from "react";
+import {
+  Divider,
+  Tab,
+  TabBar,
+  TabElement,
+  MenuItem,
+} from "@ui-kitten/components";
+import { TodoScreenProps } from "../../navigation/todo.navigator";
+import { AppRoute } from "../../navigation/app-routes";
+import {
+  SafeAreaLayout,
+  SafeAreaLayoutElement,
+  SaveAreaInset,
+} from "../../components/safe-area-layout.component";
+import { Toolbar } from "../../components/toolbar.component";
+import { InfoIcon, LogoutIcon, MenuIcon } from "../../assets/icons";
+import { APP_NAME } from "../../constants";
 
 export const TodoTabBar = (props: TodoScreenProps): SafeAreaLayoutElement => {
-
   const onMenuItemSelect = (index: number): void => {
     const { [index]: selectedItem } = menu;
 
     switch (selectedItem.title) {
-      case 'Log Out':
+      case "Log Out":
         props.navigation.navigate(AppRoute.AUTH);
         break;
       default:
@@ -41,29 +50,21 @@ export const TodoTabBar = (props: TodoScreenProps): SafeAreaLayoutElement => {
 
   const renderToolbarMenu = (): React.ReactElement => (
     <React.Fragment>
-      <MenuItem
-        title='About'
-        accessoryLeft={InfoIcon}
-      />
-      <MenuItem
-        title='Log Out'
-        accessoryLeft={LogoutIcon}
-      />
+      <MenuItem title="About" accessoryLeft={InfoIcon} />
+      <MenuItem title="Log Out" accessoryLeft={LogoutIcon} />
     </React.Fragment>
   );
 
   return (
     <SafeAreaLayout insets={SaveAreaInset.TOP}>
       <Toolbar
-        title='React Navigation Ex 🐱'
+        title={APP_NAME}
         onMenuItemSelect={onMenuItemSelect}
         menu={renderToolbarMenu}
         backIcon={MenuIcon}
         onBackPress={props.navigation.toggleDrawer}
       />
-      <TabBar
-        selectedIndex={props.state.index}
-        onSelect={onTabSelect}>
+      <TabBar selectedIndex={props.state.index} onSelect={onTabSelect}>
         {props.state.routes.map(createNavigationTabForRoute)}
       </TabBar>
       <Divider />

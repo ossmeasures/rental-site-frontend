@@ -1,38 +1,53 @@
-import React from 'react';
-import { CompositeNavigationProp, RouteProp } from '@react-navigation/core';
+import React from "react";
+import { CompositeNavigationProp, RouteProp } from "@react-navigation/core";
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
   DrawerNavigationProp,
-} from '@react-navigation/drawer';
+} from "@react-navigation/drawer";
 import {
   BottomTabBarProps,
   BottomTabNavigationProp,
   createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import { TodoNavigator } from './todo.navigator';
-import { ProfileNavigator } from './profile.navigator';
-import { AppRoute } from './app-routes';
-import { AboutScreen, HomeDrawer, HomeTabBar } from '../scenes/home';
-import { HomeIcon, InfoIcon, LayoutIcon, PersonIcon } from '../assets/icons';
+} from "@react-navigation/bottom-tabs";
+import { TodoNavigator } from "./todo.navigator";
+import { ProfileNavigator } from "./profile.navigator";
+import { AppRoute } from "./app-routes";
+import { AboutScreen, HomeDrawer, HomeTabBar } from "../scenes/home";
+import {
+  HomeIcon,
+  InfoIcon,
+  LayoutIcon,
+  PersonIcon,
+  SettingIcon,
+} from "../assets/icons";
+import { SettingScreen } from "../scenes/setting";
 
 type HomeDrawerNavigatorParams = {
   [AppRoute.HOME]: undefined;
   [AppRoute.ABOUT]: undefined;
-}
+};
 
 type HomeBottomTabsNavigatorParams = {
   [AppRoute.TODO]: undefined;
   [AppRoute.PROFILE]: undefined;
-}
+  [AppRoute.SETTING]: undefined;
+};
 
 export type TodoTabNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.TODO>,
-  DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>>;
+  DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>
+>;
 
 export type ProfileTabNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.PROFILE>,
-  DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>>;
+  DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>
+>;
+
+export type SettingTabNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.SETTING>,
+  DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>
+>;
 
 export interface AboutScreenProps {
   navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.ABOUT>;
@@ -66,12 +81,17 @@ const HomeBottomNavigator = (): React.ReactElement => (
     <BottomTab.Screen
       name={AppRoute.TODO}
       component={TodoNavigator}
-      options={{ title: 'TODO', tabBarIcon: LayoutIcon }}
+      options={{ title: "TODO", tabBarIcon: LayoutIcon }}
     />
     <BottomTab.Screen
       name={AppRoute.PROFILE}
       component={ProfileNavigator}
-      options={{ title: 'PROFILE', tabBarIcon: PersonIcon }}
+      options={{ title: "PROFILE", tabBarIcon: PersonIcon }}
+    />
+    <BottomTab.Screen
+      name={AppRoute.SETTING}
+      component={SettingScreen}
+      options={{ title: "Setting", tabBarIcon: SettingIcon }}
     />
   </BottomTab.Navigator>
 );
@@ -82,13 +102,12 @@ export const HomeNavigator = (): React.ReactElement => (
     <Drawer.Screen
       name={AppRoute.HOME}
       component={HomeBottomNavigator}
-      options={{ title: 'Home', drawerIcon: HomeIcon }}
+      options={{ title: "Home", drawerIcon: HomeIcon }}
     />
     <Drawer.Screen
       name={AppRoute.ABOUT}
       component={AboutScreen}
-      options={{ title: 'About', drawerIcon: InfoIcon }}
+      options={{ title: "About", drawerIcon: InfoIcon }}
     />
   </Drawer.Navigator>
 );
-

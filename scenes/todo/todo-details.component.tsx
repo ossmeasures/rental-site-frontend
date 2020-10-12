@@ -1,19 +1,20 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button, Layout, LayoutElement, Text } from '@ui-kitten/components';
-import { EdgeInsets, useSafeArea } from 'react-native-safe-area-context';
-import { TodoDetailsScreenProps } from '../../navigation/todo.navigator';
-import { Toolbar } from '../../components/toolbar.component';
-import { ImageOverlay } from '../../components/image-overlay.component';
-import { ProgressBar } from '../../components/progress-bar.component';
-import { Todo } from '../../data/todo.model';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Button, Layout, LayoutElement, Text } from "@ui-kitten/components";
+import { EdgeInsets, useSafeArea } from "react-native-safe-area-context";
+import { TodoDetailsScreenProps } from "../../navigation/todo.navigator";
+import { Toolbar } from "../../components/toolbar.component";
+import { ImageOverlay } from "../../components/image-overlay.component";
+import { ProgressBar } from "../../components/progress-bar.component";
+import { Todo } from "../../data/todo.model";
 
 export type TodoDetailsRouteParams = {
   todo: Todo;
-}
+};
 
-export const TodoDetailsScreen = (props: TodoDetailsScreenProps): LayoutElement => {
-
+export const TodoDetailsScreen = (
+  props: TodoDetailsScreenProps
+): LayoutElement => {
   const { todo } = props.route.params;
   const insets: EdgeInsets = useSafeArea();
 
@@ -21,17 +22,13 @@ export const TodoDetailsScreen = (props: TodoDetailsScreenProps): LayoutElement 
     <React.Fragment>
       <ImageOverlay
         style={[styles.appBar, { paddingTop: insets.top }]}
-        source={require('../../assets/image-background.jpeg')}>
-        <Toolbar
-          appearance='control'
-          onBackPress={props.navigation.goBack}
-        />
+        source={require("../../assets/constructionItem.jpeg")}
+      >
+        <Toolbar appearance="control" onBackPress={props.navigation.goBack} />
       </ImageOverlay>
       <Layout style={styles.container}>
         <View style={styles.detailsContainer}>
-          <Text
-            style={styles.title}
-            category='h4'>
+          <Text style={styles.title} category="h4">
             {todo.title}
           </Text>
           <ProgressBar
@@ -39,14 +36,9 @@ export const TodoDetailsScreen = (props: TodoDetailsScreenProps): LayoutElement 
             progress={todo.progress}
             text={`${todo.progress}%`}
           />
-          <Text style={styles.title}>
-            {todo.description}
-          </Text>
+          <Text style={styles.title}>{todo.description}</Text>
         </View>
-        <Button
-          onPress={props.navigation.goBack}>
-          COMPLETE
-        </Button>
+        <Button onPress={props.navigation.goBack}>COMPLETE</Button>
       </Layout>
     </React.Fragment>
   );
@@ -71,7 +63,7 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   progressBar: {
-    width: '50%',
+    width: "50%",
     marginVertical: 16,
   },
 });
