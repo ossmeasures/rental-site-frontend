@@ -2,12 +2,12 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Divider, Layout, Text } from "@ui-kitten/components";
 import { AboutScreenProps } from "../../navigation/home.navigator";
-import { Toolbar } from "../../components/toolbar.component";
+import { Toolbar } from "../../components/Toolbar";
 import {
   SafeAreaLayout,
   SafeAreaLayoutElement,
   SaveAreaInset,
-} from "../../components/safe-area-layout.component";
+} from "../../components/SafeAreaLayout";
 import { APP_NAME } from "../../constants";
 
 export const AboutScreen = (props: AboutScreenProps): SafeAreaLayoutElement => (

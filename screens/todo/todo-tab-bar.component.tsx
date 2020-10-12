@@ -7,13 +7,13 @@ import {
   MenuItem,
 } from "@ui-kitten/components";
 import { TodoScreenProps } from "../../navigation/todo.navigator";
-import { AppRoute } from "../../navigation/app-routes";
+import { AppRoute } from "../../navigation/AppRoutes";
 import {
   SafeAreaLayout,
   SafeAreaLayoutElement,
   SaveAreaInset,
-} from "../../components/safe-area-layout.component";
-import { Toolbar } from "../../components/toolbar.component";
+} from "../../components/SafeAreaLayout";
+import { Toolbar } from "../../components/Toolbar";
 import { InfoIcon, LogoutIcon, MenuIcon } from "../../assets/icons";
 import { APP_NAME } from "../../constants";
 

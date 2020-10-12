@@ -5,8 +5,8 @@ import {
   StackNavigationProp,
 } from "@react-navigation/stack";
 import { SettingTabNavigationProp } from "./home.navigator";
-import { AppRoute } from "./app-routes";
-import { SettingScreen } from "../scenes/setting";
+import { AppRoute } from "./AppRoutes";
+import { SettingScreen } from "../screens/setting";
 
 type SettingNavigatorParams = {
   [AppRoute.SETTING]: undefined;

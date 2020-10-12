@@ -12,8 +12,8 @@ import {
 } from "@react-navigation/bottom-tabs";
 import { TodoNavigator } from "./todo.navigator";
 import { ProfileNavigator } from "./profile.navigator";
-import { AppRoute } from "./app-routes";
-import { AboutScreen, HomeDrawer, HomeTabBar } from "../scenes/home";
+import { AppRoute } from "./AppRoutes";
+import { AboutScreen, HomeDrawer, HomeTabBar } from "../screens/home";
 import {
   HomeIcon,
   InfoIcon,
@@ -21,7 +21,7 @@ import {
   PersonIcon,
   SettingIcon,
 } from "../assets/icons";
-import { SettingScreen } from "../scenes/setting";
+import { SettingScreen } from "../screens/setting";
 
 type HomeDrawerNavigatorParams = {
   [AppRoute.HOME]: undefined;

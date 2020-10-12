@@ -4,10 +4,11 @@ import { EdgeInsets, useSafeArea } from "react-native-safe-area-context";
 import { Formik, FormikProps } from "formik";
 import { Button, Layout, LayoutElement } from "@ui-kitten/components";
 import { SignUpScreenProps } from "../../navigation/auth.navigator";
-import { AppRoute } from "../../navigation/app-routes";
-import { Toolbar } from "../../components/toolbar.component";
-import { FormInput } from "../../components/form-input.component";
+import { AppRoute } from "../../navigation/AppRoutes";
+import { Toolbar } from "../../components/Toolbar";
+import { FormInput } from "../../components/FormInput";
 import { SignUpData, SignUpSchema } from "../../data/sign-up.model";
+import { SignUpButton } from "../../components/button/DesignedButtons";
 
 export const SignUpScreen = (props: SignUpScreenProps): LayoutElement => {
   const insets: EdgeInsets = useSafeArea();
@@ -42,9 +43,7 @@ export const SignUpScreen = (props: SignUpScreenProps): LayoutElement => {
         style={styles.formControl}
         placeholder="Username"
       />
-      <Button style={styles.submitButton} onPress={props.handleSubmit}>
-        SIGN UP
-      </Button>
+      <SignUpButton style={styles.submitButton} onPress={props.handleSubmit} />
     </React.Fragment>
   );
 

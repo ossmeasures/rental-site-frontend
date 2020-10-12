@@ -12,8 +12,8 @@ import {
   useStyleSheet,
 } from "@ui-kitten/components";
 import { TodoInProgressScreenProps } from "../../navigation/todo.navigator";
-import { AppRoute } from "../../navigation/app-routes";
-import { ProgressBar } from "../../components/progress-bar.component";
+import { AppRoute } from "../../navigation/AppRoutes";
+import { ProgressBar } from "../../components/ProgressBar";
 import { SearchIcon } from "../../assets/icons";
 import { Todo } from "../../data/todo.model";
 

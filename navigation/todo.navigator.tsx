@@ -1,47 +1,57 @@
-import React from 'react';
-import { CompositeNavigationProp, RouteProp } from '@react-navigation/core';
-import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
+import React from "react";
+import { CompositeNavigationProp, RouteProp } from "@react-navigation/core";
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from "@react-navigation/stack";
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBarProps,
   MaterialTopTabNavigationProp,
-} from '@react-navigation/material-top-tabs';
-import { TodoTabNavigationProp } from './home.navigator';
-import { AppRoute } from './app-routes';
+} from "@react-navigation/material-top-tabs";
+import { TodoTabNavigationProp } from "./home.navigator";
+import { AppRoute } from "./AppRoutes";
 import {
   TodoDetailsRouteParams,
   TodoDetailsScreen,
   TodoDoneScreen,
   TodoInProgressScreen,
   TodoTabBar,
-} from '../scenes/todo';
-import { DoneAllIcon, GridIcon } from '../assets/icons';
+} from "../screens/todo";
+import { DoneAllIcon, GridIcon } from "../assets/icons";
 
 type TodoNavigatorParams = {
   [AppRoute.TODO]: undefined;
   [AppRoute.TODO_DETAILS]: TodoDetailsRouteParams;
-}
+};
 
 type TodoTabsNavigatorParams = {
   [AppRoute.TODO_IN_PROGRESS]: undefined;
   [AppRoute.TODO_DONE]: undefined;
-}
+};
 
 export type TodoScreenProps = MaterialTopTabBarProps & {
   navigation: TodoTabNavigationProp;
-}
+};
 
 export interface TodoInProgressScreenProps {
   navigation: CompositeNavigationProp<
-    TodoTabNavigationProp & StackNavigationProp<TodoNavigatorParams, AppRoute.TODO_DETAILS>,
-    MaterialTopTabNavigationProp<TodoTabsNavigatorParams, AppRoute.TODO_IN_PROGRESS>>;
+    TodoTabNavigationProp &
+      StackNavigationProp<TodoNavigatorParams, AppRoute.TODO_DETAILS>,
+    MaterialTopTabNavigationProp<
+      TodoTabsNavigatorParams,
+      AppRoute.TODO_IN_PROGRESS
+    >
+  >;
   route: RouteProp<TodoTabsNavigatorParams, AppRoute.TODO_IN_PROGRESS>;
 }
 
 export interface TodoDoneScreenProps {
   navigation: CompositeNavigationProp<
-    TodoTabNavigationProp & StackNavigationProp<TodoNavigatorParams, AppRoute.TODO_DETAILS>,
-    MaterialTopTabNavigationProp<TodoTabsNavigatorParams, AppRoute.TODO_DONE>>;
+    TodoTabNavigationProp &
+      StackNavigationProp<TodoNavigatorParams, AppRoute.TODO_DETAILS>,
+    MaterialTopTabNavigationProp<TodoTabsNavigatorParams, AppRoute.TODO_DONE>
+  >;
   route: RouteProp<TodoTabsNavigatorParams, AppRoute.TODO_DONE>;
 }
 
@@ -60,23 +70,23 @@ const TopTab = createMaterialTopTabNavigator<TodoTabsNavigatorParams>();
 
 const TodoTabsNavigator = (): React.ReactElement => (
   // @ts-ignore: `tabBar` also contains a DrawerNavigationProp & BottomTabNavigationProp
-  <TopTab.Navigator tabBar={props => <TodoTabBar {...props} />}>
+  <TopTab.Navigator tabBar={(props) => <TodoTabBar {...props} />}>
     <TopTab.Screen
       name={AppRoute.TODO_IN_PROGRESS}
       component={TodoInProgressScreen}
-      options={{ title: 'IN PROGRESS', tabBarIcon: GridIcon }}
+      options={{ title: "IN PROGRESS", tabBarIcon: GridIcon }}
     />
     <TopTab.Screen
       name={AppRoute.TODO_DONE}
       component={TodoDoneScreen}
-      options={{ title: 'DONE', tabBarIcon: DoneAllIcon }}
+      options={{ title: "DONE", tabBarIcon: DoneAllIcon }}
     />
   </TopTab.Navigator>
 );
 
 export const TodoNavigator = (): React.ReactElement => (
-  <Stack.Navigator headerMode='none'>
-    <Stack.Screen name={AppRoute.TODO} component={TodoTabsNavigator}/>
-    <Stack.Screen name={AppRoute.TODO_DETAILS} component={TodoDetailsScreen}/>
+  <Stack.Navigator headerMode="none">
+    <Stack.Screen name={AppRoute.TODO} component={TodoTabsNavigator} />
+    <Stack.Screen name={AppRoute.TODO_DETAILS} component={TodoDetailsScreen} />
   </Stack.Navigator>
 );

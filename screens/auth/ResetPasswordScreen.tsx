@@ -1,16 +1,17 @@
 import React from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import { EdgeInsets, useSafeArea } from "react-native-safe-area-context";
-import { Button, Layout, LayoutElement } from "@ui-kitten/components";
+import { Layout, LayoutElement } from "@ui-kitten/components";
 import { Formik, FormikProps } from "formik";
 import { ResetPasswordScreenProps } from "../../navigation/auth.navigator";
-import { AppRoute } from "../../navigation/app-routes";
-import { FormInput } from "../../components/form-input.component";
-import { Toolbar } from "../../components/toolbar.component";
+import { AppRoute } from "../../navigation/AppRoutes";
+import { FormInput } from "../../components/FormInput";
+import { Toolbar } from "../../components/Toolbar";
 import {
   ResetPasswordData,
   ResetPasswordSchema,
 } from "../../data/reset-password.model";
+import { DoneButton } from "../../components/button/DesignedButtons";
 
 export const ResetPasswordScreen = (
   props: ResetPasswordScreenProps
@@ -35,9 +36,7 @@ export const ResetPasswordScreen = (
         placeholder="Email"
         keyboardType="email-address"
       />
-      <Button style={styles.button} onPress={props.handleSubmit}>
-        DONE
-      </Button>
+      <DoneButton style={styles.button} onPress={props.handleSubmit} />
     </React.Fragment>
   );
 

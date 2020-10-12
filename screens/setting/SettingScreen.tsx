@@ -1,18 +1,18 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Divider, Layout, Text } from "@ui-kitten/components";
-import { ProfileScreenProps } from "../../navigation/profile.navigator";
-import { Toolbar } from "../../components/toolbar.component";
+import { SettingScreenProps } from "../../navigation/Setting.navigator";
+import { Toolbar } from "../../components/Toolbar";
 import {
   SafeAreaLayout,
   SafeAreaLayoutElement,
   SaveAreaInset,
-} from "../../components/safe-area-layout.component";
+} from "../../components/SafeAreaLayout";
 import { MenuIcon } from "../../assets/icons";
 import { APP_NAME } from "../../constants";
 
-export const ProfileScreen = (
-  props: ProfileScreenProps
+export const SettingScreen = (
+  props: SettingScreenProps
 ): SafeAreaLayoutElement => (
   <SafeAreaLayout style={styles.safeArea} insets={SaveAreaInset.TOP}>
     <Toolbar
@@ -22,7 +22,7 @@ export const ProfileScreen = (
     />
     <Divider />
     <Layout style={styles.container}>
-      <Text category="h1">PROFILE</Text>
+      <Text category="h1">SETTING ⚙</Text>
     </Layout>
   </SafeAreaLayout>
 );

@@ -3,9 +3,9 @@ import { StyleSheet, View } from "react-native";
 import { Button, Layout, LayoutElement, Text } from "@ui-kitten/components";
 import { EdgeInsets, useSafeArea } from "react-native-safe-area-context";
 import { TodoDetailsScreenProps } from "../../navigation/todo.navigator";
-import { Toolbar } from "../../components/toolbar.component";
-import { ImageOverlay } from "../../components/image-overlay.component";
-import { ProgressBar } from "../../components/progress-bar.component";
+import { Toolbar } from "../../components/Toolbar";
+import { ImageOverlay } from "../../components/ImageOverlay";
+import { ProgressBar } from "../../components/ProgressBar";
 import { Todo } from "../../data/todo.model";
 
 export type TodoDetailsRouteParams = {

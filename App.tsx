@@ -5,7 +5,7 @@ import { light, mapping } from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { AppNavigator } from "./navigation/app.navigator";
-import { AppRoute } from "./navigation/app-routes";
+import { AppRoute } from "./navigation/AppRoutes";
 import { default as theme } from "./theme.json"; // <-- Import app theme
 
 export default (): React.ReactFragment => {

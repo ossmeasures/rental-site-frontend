@@ -3,11 +3,12 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import { Button, CheckBox, Layout } from "@ui-kitten/components";
 import { Formik, FormikProps } from "formik";
 import { SignInScreenProps } from "../../navigation/auth.navigator";
-import { AppRoute } from "../../navigation/app-routes";
-import { FormInput } from "../../components/form-input.component";
+import { AppRoute } from "../../navigation/AppRoutes";
+import { FormInput } from "../../components/FormInput";
 import { EyeIcon, EyeOffIcon } from "../../assets/icons";
 import { SignInData, SignInSchema } from "../../data/sign-in.model";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { SignInButton } from "../../components/button/DesignedButtons";
 
 export const SignInScreen = (props: SignInScreenProps) => {
   const [shouldRemember, setShouldRemember] = React.useState<boolean>(false);
@@ -73,9 +74,11 @@ export const SignInScreen = (props: SignInScreenProps) => {
           Forgot password?
         </Button>
       </View>
-      <Button style={styles.submitButton} onPress={props.handleSubmit}>
-        SIGN IN
-      </Button>
+
+      <SignInButton
+        style={{ marginVertical: 24 }}
+        onPress={props.handleSubmit}
+      />
     </React.Fragment>
   );
 

@@ -1,15 +1,20 @@
-import React from 'react';
+import React from "react";
 import {
   BottomNavigation,
   BottomNavigationTab,
   BottomNavigationTabElement,
   Divider,
-} from '@ui-kitten/components';
-import { BottomHomeScreenProps } from '../../navigation/home.navigator';
-import { SafeAreaLayout, SafeAreaLayoutElement, SaveAreaInset } from '../../components/safe-area-layout.component';
+} from "@ui-kitten/components";
+import { BottomHomeScreenProps } from "../../navigation/home.navigator";
+import {
+  SafeAreaLayout,
+  SafeAreaLayoutElement,
+  SaveAreaInset,
+} from "../../components/SafeAreaLayout";
 
-export const HomeTabBar = (props: BottomHomeScreenProps): SafeAreaLayoutElement => {
-
+export const HomeTabBar = (
+  props: BottomHomeScreenProps
+): SafeAreaLayoutElement => {
   const onSelect = (index: number): void => {
     const selectedTabRoute: string = props.state.routeNames[index];
     props.navigation.navigate(selectedTabRoute);
@@ -29,11 +34,12 @@ export const HomeTabBar = (props: BottomHomeScreenProps): SafeAreaLayoutElement 
 
   return (
     <SafeAreaLayout insets={SaveAreaInset.BOTTOM}>
-      <Divider/>
+      <Divider />
       <BottomNavigation
-        appearance='noIndicator'
+        appearance="noIndicator"
         selectedIndex={props.state.index}
-        onSelect={onSelect}>
+        onSelect={onSelect}
+      >
         {props.state.routes.map(createNavigationTabForRoute)}
       </BottomNavigation>
     </SafeAreaLayout>
