@@ -1,38 +1,29 @@
-import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { light, mapping } from "@eva-design/eva";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { AppNavigator } from "./navigation/app.navigator";
+import { AppRoute } from "./navigation/AppRoutes";
+import { default as theme } from "./theme.json"; // <-- Import app theme
 
-export default function App() {
-  const [count, setCount] = useState(0);
+export default (): React.ReactFragment => {
+  const isAuthorized: boolean = false;
 
   return (
-    <View style={styles.container}>
-      <Text>{count}</Text>
-      <Button
-        title="click me!"
-        onPress={() => {
-          setCount(count + 1);
-        }}
-      />
-      <Greeting name="ハセシュン" />
-      <Greeting name="こーへー" />
-      <Greeting name="にっしー" />
-    </View>
-  );
-}
+    <React.Fragment>
+      <IconRegistry icons={EvaIconsPack} />
 
-const Greeting = (props: { name: string }) => {
-  return (
-    <View>
-      <Text>Hello {props.name}</Text>
-    </View>
+      <ApplicationProvider mapping={mapping} theme={{ ...light, ...theme }}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <AppNavigator
+              initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH}
+            />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </ApplicationProvider>
+    </React.Fragment>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
