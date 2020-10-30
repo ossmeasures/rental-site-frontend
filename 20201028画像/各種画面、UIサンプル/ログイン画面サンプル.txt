@@ -1,0 +1,9 @@
+ログイン画面　サンプル
+
+・KENKEY　中古建機販売サイト
+https://biglemon.kenkey.jp/signin
+
+
+
+・グリーンサイト
+https://portal.kensetsu-site.com/login
