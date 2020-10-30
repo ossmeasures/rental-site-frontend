@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Avatar, Divider, Layout, Text } from "@ui-kitten/components";
 import { ProfileScreenProps } from "../../navigation/profile.navigator";
 import { Toolbar } from "../../components/Toolbar";
@@ -10,6 +10,7 @@ import {
 } from "../../components/SafeAreaLayout";
 import { MenuIcon } from "../../assets/icons";
 import { APP_NAME } from "../../constants";
+import { Category } from "../../components/Category";
 
 export const ProfileScreen = (
   props: ProfileScreenProps
@@ -21,14 +22,57 @@ export const ProfileScreen = (
       onBackPress={props.navigation.toggleDrawer}
     />
     <Divider />
-    <Layout style={styles.container}>
-      <Text category="h1">PROFILE</Text>
-      <Avatar
-        style={styles.avatar}
-        size="giant"
-        source={require("../../assets/profile.jpeg")}
-      />
+    <View style={styles.text}>
+      <Text>Category</Text>
+    </View>
+    <Layout>
+      <View>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <Category name="Profile" imageUri="https://picsum.photos/200/300" />
+          <Category
+            name="Notification"
+            imageUri="https://picsum.photos/200/300/?blur=1"
+          />
+          <Category
+            name="Siri"
+            imageUri="https://picsum.photos/200/300/?blur=3"
+          />
+        </ScrollView>
+        {/* <Image source={craneLogo} style={{ width: 305, height: 159 }} /> */}
+      </View>
     </Layout>
+    <View style={styles.text}>
+      <Text>Items</Text>
+    </View>
+    <View>
+      <ScrollView>
+        <View style={styles.innerContainer}>
+          <Category name="Profile" imageUri="https://picsum.photos/200/300" />
+          <Category name="Profile" imageUri="https://picsum.photos/200/300" />
+        </View>
+        <View style={styles.innerContainer}>
+          <Category
+            name="Siri"
+            imageUri="https://picsum.photos/200/300/?blur=3"
+          />
+          <Category
+            name="Siri"
+            imageUri="https://picsum.photos/200/300/?blur=3"
+          />
+        </View>
+        <View style={styles.innerContainer}>
+          <Category
+            name="Notification"
+            imageUri="https://picsum.photos/200/300/?blur=1"
+          />
+          <Category
+            name="Notification"
+            imageUri="https://picsum.photos/200/300/?blur=1"
+          />
+        </View>
+      </ScrollView>
+      {/* <Image source={craneLogo} style={{ width: 305, height: 159 }} /> */}
+    </View>
   </SafeAreaLayout>
 );
 
@@ -40,6 +84,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  text: {
+    justifyContent: "center",
+    alignItems: "flex-start",
+    // paddingLeft: 20,
+    padding: 20,
+  },
+  innerContainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 20,
   },
   avatar: {
     margin: 8,

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-react-app",
-    "slug": "my-react-app",
+    "name": "rental-site",
+    "slug": "rental-site",
     "description": "",
     "platforms": ["web"]
   }

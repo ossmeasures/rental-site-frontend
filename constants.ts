@@ -1,1 +1,1 @@
-export const APP_NAME = "🛠 Constructions 🚜...";
+export const APP_NAME = "rental app";
