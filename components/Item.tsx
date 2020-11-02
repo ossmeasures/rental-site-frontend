@@ -1,14 +1,17 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Dimensions } from "react-native";
 
-export const Category = (props) => {
+export const Item = (props) => {
+  const ITEM_WIDTH = Dimensions.get("window").width;
+
   const { image, name } = props;
   return (
     <View
       style={{
-        height: 130,
-        width: 130,
+        height: ITEM_WIDTH / 2.3,
+        width: ITEM_WIDTH / 2.3,
         marginLeft: 20,
+        marginTop: 20,
         borderWidth: 0.5,
         borderColor: "#dddddd",
       }}
@@ -24,7 +27,7 @@ export const Category = (props) => {
           source={image}
         />
       </View>
-      <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10 }}>
+      <View style={{ flex: 1, padding: 10 }}>
         <Text>{name}</Text>
       </View>
     </View>
