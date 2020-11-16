@@ -14,6 +14,7 @@ import { Categories } from "../../components/Categories";
 import { Item, Items } from "../../components/Items";
 import { items as allItems } from "../../components/itemList";
 import { Title } from "../../components/Title";
+import { ScrollView } from "react-native-gesture-handler";
 
 export const ProfileScreen = (
   props: ProfileScreenProps
@@ -29,6 +30,8 @@ export const ProfileScreen = (
     setItems(filtered);
   };
 
+  const [viewableItemIndex, setViewableItemIndex] = React.useState(1);
+
   return (
     <SafeAreaLayout style={styles.safeArea} insets={SaveAreaInset.TOP}>
       <Toolbar
@@ -37,25 +40,22 @@ export const ProfileScreen = (
         onBackPress={props.navigation.toggleDrawer}
       />
       <Divider />
-      <Input
-        style={styles.filterInput}
-        placeholder="Search"
-        value={query}
-        accessoryLeft={SearchIcon}
-        onChangeText={onChangeQuery}
-      />
-      <Title title="Categories" />
-      <Layout>
-        <View>
-          <Categories />
-        </View>
-      </Layout>
-      <Title title="Items" />
-      <Layout>
-        <View>
-          <Items items={items} />
-        </View>
-      </Layout>
+      <ScrollView>
+        <Input
+          style={styles.filterInput}
+          placeholder="Search"
+          value={query}
+          accessoryLeft={SearchIcon}
+          onChangeText={onChangeQuery}
+        />
+        <Title title="Categories" />
+        <Categories
+          selectedId={viewableItemIndex}
+          setSelectedId={setViewableItemIndex}
+        />
+        <Title title="Items" />
+        <Items items={items} />
+      </ScrollView>
     </SafeAreaLayout>
   );
 };
