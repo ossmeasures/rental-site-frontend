@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageSourcePropType } from "react-native";
+import { ImageSourcePropType, StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { Item } from "./Item";
 
@@ -20,6 +20,14 @@ export const Items = (props: { items: Item[] }): any => {
       }}
       keyExtractor={(item) => item.name}
       numColumns={2}
+      columnWrapperStyle={styles.listView}
     />
   );
 };
+
+var styles = StyleSheet.create({
+  listView: {
+    flex: 1,
+    justifyContent: "center",
+  },
+});

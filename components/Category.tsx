@@ -1,32 +1,34 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, StyleSheet } from "react-native";
 
 export const Category = (props) => {
-  const { image, name } = props;
+  const { image, name, backgroundColor } = props;
   return (
-    <View
-      style={{
-        height: 130,
-        width: 130,
-        marginLeft: 20,
-        borderWidth: 0.5,
-        borderColor: "#dddddd",
-      }}
-    >
-      <View style={{ flex: 2 }}>
-        <Image
-          style={{
-            flex: 1,
-            width: null,
-            height: null,
-            resizeMode: "cover",
-          }}
-          source={image}
-        />
-      </View>
-      <View style={{ flex: 1, paddingLeft: 10, paddingTop: 10 }}>
-        <Text>{name}</Text>
-      </View>
+    <View style={styles.container}>
+      <Image style={[styles.imageContainer]} source={image} />
+      <Text style={styles.text}>{name}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: 80,
+    width: 80,
+    marginRight: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageContainer: {
+    width: 50,
+    height: 50,
+    resizeMode: "cover",
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "gray",
+  },
+  text: {
+    fontSize: 10,
+    paddingTop: 4,
+  },
+});

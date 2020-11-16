@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Divider, Input, Layout, Text } from "@ui-kitten/components";
+import { Divider, Input, Layout } from "@ui-kitten/components";
 import { ProfileScreenProps } from "../../navigation/profile.navigator";
 import { Toolbar } from "../../components/Toolbar";
 import {
@@ -13,6 +13,7 @@ import { APP_NAME } from "../../constants";
 import { Categories } from "../../components/Categories";
 import { Item, Items } from "../../components/Items";
 import { items as allItems } from "../../components/itemList";
+import { Title } from "../../components/Title";
 
 export const ProfileScreen = (
   props: ProfileScreenProps
@@ -21,11 +22,11 @@ export const ProfileScreen = (
   const [items, setItems] = React.useState<Item[]>(allItems);
 
   const onChangeQuery = (query: string): void => {
-    // const nextTodos: Todo[] = allTodos.filter((todo: Todo): boolean => {
-    //   return todo.title.toLowerCase().includes(query.toLowerCase());
-    // });
-    // setTodos(nextTodos);
-    // setQuery(query);
+    setQuery(query);
+    const filtered = allItems.filter((item) => {
+      return item.name.includes(query);
+    });
+    setItems(filtered);
   };
 
   return (
@@ -43,17 +44,13 @@ export const ProfileScreen = (
         accessoryLeft={SearchIcon}
         onChangeText={onChangeQuery}
       />
-      <View style={styles.text}>
-        <Text>Category</Text>
-      </View>
+      <Title title="Categories" />
       <Layout>
         <View>
           <Categories />
         </View>
       </Layout>
-      <View style={styles.text}>
-        <Text>Items</Text>
-      </View>
+      <Title title="Items" />
       <Layout>
         <View>
           <Items items={items} />
@@ -63,7 +60,7 @@ export const ProfileScreen = (
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },

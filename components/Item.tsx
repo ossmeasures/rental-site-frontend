@@ -7,7 +7,7 @@ const ITEM_WIDTH = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   containerStyle: {
     width: ITEM_WIDTH / 2.3,
-    height: ITEM_WIDTH / 2.3,
+    height: ITEM_WIDTH / 2.0,
     margin: ITEM_WIDTH / 30,
     borderRadius: 8,
     padding: 0,
