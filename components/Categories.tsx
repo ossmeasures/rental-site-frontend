@@ -1,7 +1,9 @@
 import React from "react";
 import { FlatList } from "react-native-gesture-handler";
 import { Category } from "./Category";
+import * as Animatable from "react-native-animatable";
 
+const DURATION = 500;
 export const Categories = (props: {
   selectedId: number;
   setSelectedId: any;
@@ -10,27 +12,27 @@ export const Categories = (props: {
     {
       id: 1,
       name: "crane",
-      image: require("../assets/crane.png"),
+      image: require("../assets/categories/crane.png"),
     },
     {
       id: 2,
       name: "tankerTruck",
-      image: require("../assets/tankerTruck.png"),
+      image: require("../assets/categories/tankerTruck.png"),
     },
     {
       id: 3,
       name: "parts",
-      image: require("../assets/parts.png"),
+      image: require("../assets/categories/parts.png"),
     },
     {
       id: 4,
       name: "van",
-      image: require("../assets/van.png"),
+      image: require("../assets/categories/van.png"),
     },
     {
       id: 5,
       name: "bulldozer",
-      image: require("../assets/bulldozer.png"),
+      image: require("../assets/categories/bulldozer.png"),
     },
   ];
 
@@ -41,15 +43,17 @@ export const Categories = (props: {
       data={categories}
       renderItem={({ item, index }) => {
         return (
-          <Category
-            key={index}
-            name={item.name}
-            image={item.image}
-            onPress={() => {
-              props.setSelectedId(item.id);
-            }}
-            selected={props.selectedId === item.id}
-          />
+          <Animatable.View animation="bounceIn" delay={DURATION + index * 100}>
+            <Category
+              key={`${item.name}-${index}`}
+              name={item.name}
+              image={item.image}
+              onPress={() => {
+                props.setSelectedId(item.id);
+              }}
+              selected={props.selectedId === item.id}
+            />
+          </Animatable.View>
         );
       }}
     />

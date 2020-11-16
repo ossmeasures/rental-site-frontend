@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Divider, Input, Layout } from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
+import { Divider, Input } from "@ui-kitten/components";
 import { ProfileScreenProps } from "../../navigation/profile.navigator";
 import { Toolbar } from "../../components/Toolbar";
 import {
@@ -68,12 +68,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  text: {
-    justifyContent: "center",
-    alignItems: "flex-start",
-    // paddingLeft: 20,
-    padding: 20,
   },
   innerContainer: {
     flex: 1,
