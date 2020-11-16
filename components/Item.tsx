@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Image, Text, View, Dimensions } from "react-native";
-import { Card as ElementsCard } from "react-native-elements";
+import { Card } from "react-native-elements";
 import { useAssets } from "expo-asset";
 
 const ITEM_WIDTH = Dimensions.get("window").width;
@@ -8,8 +8,7 @@ const ITEM_WIDTH = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   containerStyle: {
     width: ITEM_WIDTH / 2.3,
-    height: ITEM_WIDTH / 2.0,
-    margin: ITEM_WIDTH / 30,
+    height: ITEM_WIDTH / 1.7,
     borderRadius: 8,
     padding: 0,
   },
@@ -39,30 +38,30 @@ export const Item = (props) => {
 
   if (!assets) {
     return (
-      <ElementsCard
+      <Card
         containerStyle={styles.containerStyle}
         wrapperStyle={styles.wrapperStyle}
-      ></ElementsCard>
+      ></Card>
     );
   }
   return (
-    <ElementsCard
+    <Card
       containerStyle={styles.containerStyle}
       wrapperStyle={styles.wrapperStyle}
     >
       <Image style={styles.imageStyle} source={image} />
       <View style={styles.viewStyle}>
-        <Text>{name}</Text>
+        <Text style={{ fontSize: 14 }}>{name}</Text>
         <Text
           style={{
             color: "gray",
-            fontSize: 10,
+            fontSize: 12,
           }}
         >
           {category}
         </Text>
-        <Text>¥{price.toLocaleString()}</Text>
+        <Text style={{ fontSize: 12 }}>¥{price.toLocaleString()}</Text>
       </View>
-    </ElementsCard>
+    </Card>
   );
 };

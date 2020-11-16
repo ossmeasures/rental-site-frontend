@@ -15,6 +15,7 @@ export const Category = (props) => {
           {
             borderColor: selected ? theme["color-primary-default"] : "gray",
             borderWidth: selected ? 1.5 : 1,
+            tintColor: selected ? theme["color-primary-default"] : "gray",
           },
         ]}
         source={image}
@@ -24,8 +25,8 @@ export const Category = (props) => {
           styles.text,
           {
             color: selected ? theme["color-primary-default"] : "gray",
-            fontWeight: selected ? "700" : "300",
-            fontSize: selected ? 14 : 10,
+            fontWeight: selected ? "500" : "300",
+            fontSize: selected ? 10 : 10,
           },
         ]}
       >
@@ -37,9 +38,9 @@ export const Category = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
-    width: 80,
-    marginRight: 5,
+    height: 85,
+    width: 75,
+    paddingLeft: 10,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -48,8 +49,6 @@ const styles = StyleSheet.create({
     height: 50,
     resizeMode: "cover",
     borderRadius: 50,
-    borderWidth: 1,
-    borderColor: "gray",
   },
   text: {
     fontSize: 10,

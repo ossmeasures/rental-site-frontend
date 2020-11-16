@@ -5,7 +5,7 @@ import * as Animatable from "react-native-animatable";
 import { useAssets } from "expo-asset";
 import { Text } from "react-native";
 
-const DURATION = 500;
+const DURATION = 800;
 export const Categories = (props: {
   selectedId: number;
   setSelectedId: any;
@@ -13,28 +13,43 @@ export const Categories = (props: {
   const categories = [
     {
       id: 1,
-      name: "crane",
+      name: "クレーン",
       image: require("../assets/categories/crane.png"),
     },
     {
       id: 2,
-      name: "tankerTruck",
+      name: "タンカー",
       image: require("../assets/categories/tankerTruck.png"),
     },
     {
       id: 3,
-      name: "parts",
+      name: "工具",
       image: require("../assets/categories/parts.png"),
     },
     {
       id: 4,
-      name: "van",
+      name: "バン",
       image: require("../assets/categories/van.png"),
     },
     {
       id: 5,
-      name: "bulldozer",
+      name: "ブルドーザー",
       image: require("../assets/categories/bulldozer.png"),
+    },
+    {
+      id: 6,
+      name: "ホイルローダ",
+      image: require("../assets/categories/wheelLoader.png"),
+    },
+    {
+      id: 7,
+      name: "油圧ショベル",
+      image: require("../assets/categories/excavator.png"),
+    },
+    {
+      id: 8,
+      name: "トラック",
+      image: require("../assets/categories/track.png"),
     },
   ];
 
@@ -48,6 +63,7 @@ export const Categories = (props: {
       horizontal
       showsHorizontalScrollIndicator={false}
       data={categories}
+      keyExtractor={(item) => item.name}
       renderItem={({ item, index }) => {
         return (
           <Animatable.View animation="bounceIn" delay={DURATION + index * 100}>

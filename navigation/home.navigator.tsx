@@ -15,10 +15,10 @@ import { ProfileNavigator } from "./profile.navigator";
 import { AppRoute } from "./AppRoutes";
 import { AboutScreen, HomeDrawer, HomeTabBar } from "../screens/home";
 import {
+  CarIcon,
   HomeIcon,
   InfoIcon,
   LayoutIcon,
-  PersonIcon,
   SettingIcon,
 } from "../assets/icons";
 import { SettingScreen } from "../screens/setting";
@@ -86,7 +86,7 @@ const HomeBottomNavigator = (): React.ReactElement => (
     <BottomTab.Screen
       name={AppRoute.PROFILE}
       component={ProfileNavigator}
-      options={{ title: "PROFILE", tabBarIcon: PersonIcon }}
+      options={{ title: "ITEM", tabBarIcon: CarIcon }}
     />
     <BottomTab.Screen
       name={AppRoute.SETTING}
