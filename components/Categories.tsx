@@ -2,6 +2,8 @@ import React from "react";
 import { FlatList } from "react-native-gesture-handler";
 import { Category } from "./Category";
 import * as Animatable from "react-native-animatable";
+import { useAssets } from "expo-asset";
+import { Text } from "react-native";
 
 const DURATION = 500;
 export const Categories = (props: {
@@ -36,6 +38,11 @@ export const Categories = (props: {
     },
   ];
 
+  const [assets] = useAssets(categories.map((item) => item.image));
+
+  if (!assets) {
+    return <Text>Loading...</Text>;
+  }
   return (
     <FlatList
       horizontal

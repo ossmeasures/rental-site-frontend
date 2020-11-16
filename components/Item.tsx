@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Image, Text, View, Dimensions } from "react-native";
 import { Card as ElementsCard } from "react-native-elements";
+import { useAssets } from "expo-asset";
 
 const ITEM_WIDTH = Dimensions.get("window").width;
 
@@ -34,6 +35,16 @@ const styles = StyleSheet.create({
 
 export const Item = (props) => {
   const { image, name, category, price } = props;
+  const [assets] = useAssets([image]);
+
+  if (!assets) {
+    return (
+      <ElementsCard
+        containerStyle={styles.containerStyle}
+        wrapperStyle={styles.wrapperStyle}
+      ></ElementsCard>
+    );
+  }
   return (
     <ElementsCard
       containerStyle={styles.containerStyle}

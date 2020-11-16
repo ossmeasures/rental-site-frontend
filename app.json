@@ -3,6 +3,8 @@
     "name": "rental-site",
     "slug": "rental-site",
     "description": "",
-    "platforms": ["web"]
+    "platforms": [
+      "web"
+    ]
   }
 }
