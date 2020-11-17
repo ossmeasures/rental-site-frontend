@@ -46,6 +46,7 @@ export type Item = {
   category: string;
   price: number;
   onPress?: any;
+  description?: string;
 };
 
 export const Item = (props: Item) => {
