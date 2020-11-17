@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import { Divider, Input } from "@ui-kitten/components";
-import { ProfileScreenProps } from "../../navigation/profile.navigator";
+import { ItemScreenProps } from "../../navigation/item.navigator";
 import { Toolbar } from "../../components/Toolbar";
 import {
   SafeAreaLayout,
@@ -11,14 +11,13 @@ import {
 import { MenuIcon, SearchIcon } from "../../assets/icons";
 import { APP_NAME } from "../../constants";
 import { Categories } from "../../components/Categories";
-import { Item, Items } from "../../components/Items";
 import { items as allItems } from "../../components/itemList";
 import { Title } from "../../components/Title";
-import { ScrollView } from "react-native-gesture-handler";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { AppRoute } from "../../navigation/AppRoutes";
+import { Item } from "../../components/Item";
 
-export const ProfileScreen = (
-  props: ProfileScreenProps
-): SafeAreaLayoutElement => {
+export const ItemScreen = (props: ItemScreenProps): SafeAreaLayoutElement => {
   const [query, setQuery] = React.useState<string>("");
   const [items, setItems] = React.useState<Item[]>(allItems);
 
@@ -32,6 +31,11 @@ export const ProfileScreen = (
 
   const [viewableItemIndex, setViewableItemIndex] = React.useState(1);
 
+  const navigateDetails = (itemIndex: number): void => {
+    const { [itemIndex]: item } = items;
+    props.navigation.navigate(AppRoute.ITEM_DETAILS, { item });
+  };
+
   return (
     <SafeAreaLayout style={styles.safeArea} insets={SaveAreaInset.TOP}>
       <Toolbar
@@ -40,7 +44,7 @@ export const ProfileScreen = (
         onBackPress={props.navigation.toggleDrawer}
       />
       <Divider />
-      <ScrollView>
+      <View>
         <Input
           style={styles.filterInput}
           placeholder="Search"
@@ -54,13 +58,25 @@ export const ProfileScreen = (
           setSelectedId={setViewableItemIndex}
         />
         <Title title="Items" />
-        <Items items={items} />
-      </ScrollView>
+        <FlatList
+          data={items}
+          renderItem={({ item, index }) => {
+            return <Item {...item} onPress={() => navigateDetails(index)} />;
+          }}
+          keyExtractor={(item) => item.name}
+          numColumns={2}
+          columnWrapperStyle={styles.listView}
+        />
+      </View>
     </SafeAreaLayout>
   );
 };
 
 export const styles = StyleSheet.create({
+  listView: {
+    flex: 1,
+    justifyContent: "center",
+  },
   safeArea: {
     flex: 1,
   },

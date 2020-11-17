@@ -1,7 +1,15 @@
 import React from "react";
-import { StyleSheet, Image, Text, View, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  Dimensions,
+  ImageSourcePropType,
+} from "react-native";
 import { Card } from "react-native-elements";
 import { useAssets } from "expo-asset";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ITEM_WIDTH = Dimensions.get("window").width;
 
@@ -32,9 +40,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Item = (props) => {
-  const { image, name, category, price } = props;
-  const [assets] = useAssets([image]);
+export type Item = {
+  name: string;
+  image: ImageSourcePropType;
+  category: string;
+  price: number;
+  onPress?: any;
+};
+
+export const Item = (props: Item) => {
+  const { image, name, category, price, onPress } = props;
+  const [assets] = useAssets([image as number]);
 
   if (!assets) {
     return (
@@ -45,23 +61,25 @@ export const Item = (props) => {
     );
   }
   return (
-    <Card
-      containerStyle={styles.containerStyle}
-      wrapperStyle={styles.wrapperStyle}
-    >
-      <Image style={styles.imageStyle} source={image} />
-      <View style={styles.viewStyle}>
-        <Text style={{ fontSize: 14 }}>{name}</Text>
-        <Text
-          style={{
-            color: "gray",
-            fontSize: 12,
-          }}
-        >
-          {category}
-        </Text>
-        <Text style={{ fontSize: 12 }}>¥{price.toLocaleString()}</Text>
-      </View>
-    </Card>
+    <TouchableOpacity onPress={onPress}>
+      <Card
+        containerStyle={styles.containerStyle}
+        wrapperStyle={styles.wrapperStyle}
+      >
+        <Image style={styles.imageStyle} source={image} />
+        <View style={styles.viewStyle}>
+          <Text style={{ fontSize: 14 }}>{name}</Text>
+          <Text
+            style={{
+              color: "gray",
+              fontSize: 12,
+            }}
+          >
+            {category}
+          </Text>
+          <Text style={{ fontSize: 12 }}>¥{price.toLocaleString()}</Text>
+        </View>
+      </Card>
+    </TouchableOpacity>
   );
 };
