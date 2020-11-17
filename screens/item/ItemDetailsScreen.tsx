@@ -1,47 +1,58 @@
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/core";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Layout, Button } from "@ui-kitten/components";
 import React from "react";
-import { Text, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { Text, StyleSheet, View } from "react-native";
 import { EdgeInsets, useSafeArea } from "react-native-safe-area-context";
 import { ImageOverlay } from "../../components/ImageOverlay";
 import { Item } from "../../components/Item";
 
 import { SafeAreaLayoutElement } from "../../components/SafeAreaLayout";
 import { Toolbar } from "../../components/Toolbar";
-import { ItemDetailsScreenProps } from "../../navigation/item.navigator";
+import { AppRoute } from "../../navigation/AppRoutes";
+import { ItemNavigatorParams } from "../../navigation/item.navigator";
 
 export type ItemDetailScreenProps = {
   item: Item;
 };
-export const ItemDetailsScreen = (
-  props: ItemDetailsScreenProps
-): SafeAreaLayoutElement => {
+
+type NP = StackNavigationProp<ItemNavigatorParams, AppRoute.ITEM_DETAILS>;
+type RP = RouteProp<ItemNavigatorParams, AppRoute.ITEM_DETAILS>;
+
+export const ItemDetailsScreen = (): SafeAreaLayoutElement => {
   const insets: EdgeInsets = useSafeArea();
+
+  const navigation = useNavigation<NP>();
+  const route = useRoute<RP>();
+  const item = route.params.item;
 
   return (
     <React.Fragment>
-      <ScrollView>
-        <ImageOverlay
-          style={[styles.appBar, { paddingTop: insets.top }]}
-          source={props.route.params.item.image}
-        >
-          <Toolbar appearance="control" onBackPress={props.navigation.goBack} />
-        </ImageOverlay>
-
-        <Layout style={styles.container}>
-          <Text style={styles.title}>{props.route.params.item.name}</Text>
-          <Text style={styles.category}>
-            {props.route.params.item.category}
-          </Text>
-          <Text style={styles.price}>
-            ¥{props.route.params.item.price.toLocaleString()}
+      <ImageOverlay
+        style={[styles.appBar, { paddingTop: insets.top }]}
+        source={item.image}
+      >
+        <Toolbar appearance="control" onBackPress={navigation.goBack} />
+      </ImageOverlay>
+      <Layout style={styles.container}>
+        <View style={styles.detailsContainer}>
+          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.category}>{item.category}</Text>
+          <Text style={styles.price}>¥{item.price.toLocaleString()}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+          <Text style={styles.description}>年式　{item.modelYear}</Text>
+          <Text style={styles.description}>走行距離　{item.mileage}</Text>
+          <Text style={styles.description}>排気量　{item.displacement}</Text>
+          <Text style={styles.description}>
+            修復歴　{item.hasRepairHistory ? "あり" : "なし"}
           </Text>
           <Text style={styles.description}>
-            {props.route.params.item.description}
+            保証　{item.hasWarranty ? "あり" : "なし"}
           </Text>
-        </Layout>
-      </ScrollView>
-      <Button onPress={props.navigation.goBack}>レンタルする</Button>
+          <Text style={styles.description}>ミッション　{item.mission}</Text>
+        </View>
+        <Button onPress={navigation.goBack}>レンタルする</Button>
+      </Layout>
     </React.Fragment>
   );
 };
@@ -51,22 +62,29 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 16,
   },
+  detailsContainer: {
+    flex: 1,
+  },
   appBar: {
     height: 390,
   },
   title: {
     fontSize: 32,
     fontWeight: "800",
+    marginVertical: 4,
   },
   category: {
     fontSize: 18,
+    marginVertical: 4,
   },
   price: {
     fontSize: 18,
+    marginVertical: 4,
   },
   description: {
     fontSize: 10,
     color: "gray",
+    marginVertical: 2,
   },
   rentalButton: {
     marginBottom: 10,

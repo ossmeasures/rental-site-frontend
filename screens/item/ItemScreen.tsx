@@ -1,7 +1,7 @@
 import React from "react";
-import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Divider, Input } from "@ui-kitten/components";
-import { ItemScreenProps } from "../../navigation/item.navigator";
+import { ItemNavigatorParams } from "../../navigation/item.navigator";
 import { Toolbar } from "../../components/Toolbar";
 import {
   SafeAreaLayout,
@@ -16,24 +16,31 @@ import { Title } from "../../components/Title";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { AppRoute } from "../../navigation/AppRoutes";
 import { Item } from "../../components/Item";
+import { CompositeNavigationProp, useNavigation } from "@react-navigation/core";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ItemTabNavigationProp } from "../../navigation/home.navigator";
 
-export const ItemScreen = (props: ItemScreenProps): SafeAreaLayoutElement => {
+type NP = CompositeNavigationProp<
+  ItemTabNavigationProp,
+  StackNavigationProp<ItemNavigatorParams, AppRoute.ITEM>
+>;
+
+export const ItemScreen = (): SafeAreaLayoutElement => {
   const [query, setQuery] = React.useState<string>("");
   const [items, setItems] = React.useState<Item[]>(allItems);
+  const navigation = useNavigation<NP>();
 
   const onChangeQuery = (query: string): void => {
     setQuery(query);
-    const filtered = allItems.filter((item) => {
-      return item.name.includes(query);
-    });
+    const filtered = allItems.filter((item) => item.name.includes(query));
     setItems(filtered);
   };
 
-  const [viewableItemIndex, setViewableItemIndex] = React.useState(1);
+  const [selectedId, setSelectedId] = React.useState(1);
 
   const navigateDetails = (itemIndex: number): void => {
     const { [itemIndex]: item } = items;
-    props.navigation.navigate(AppRoute.ITEM_DETAILS, { item });
+    navigation.navigate(AppRoute.ITEM_DETAILS, { item });
   };
 
   return (
@@ -41,33 +48,33 @@ export const ItemScreen = (props: ItemScreenProps): SafeAreaLayoutElement => {
       <Toolbar
         title={APP_NAME}
         backIcon={MenuIcon}
-        onBackPress={props.navigation.toggleDrawer}
+        onBackPress={navigation.toggleDrawer}
       />
       <Divider />
-      <View>
-        <Input
-          style={styles.filterInput}
-          placeholder="Search"
-          value={query}
-          accessoryLeft={SearchIcon}
-          onChangeText={onChangeQuery}
-        />
-        <Title title="Categories" />
-        <Categories
-          selectedId={viewableItemIndex}
-          setSelectedId={setViewableItemIndex}
-        />
-        <Title title="Items" />
-        <FlatList
-          data={items}
-          renderItem={({ item, index }) => {
-            return <Item {...item} onPress={() => navigateDetails(index)} />;
-          }}
-          keyExtractor={(item) => item.name}
-          numColumns={2}
-          columnWrapperStyle={styles.listView}
-        />
-      </View>
+
+      <FlatList
+        data={items}
+        ListHeaderComponent={
+          <>
+            <Input
+              style={styles.filterInput}
+              placeholder="Search"
+              value={query}
+              accessoryLeft={SearchIcon}
+              onChangeText={onChangeQuery}
+            />
+            <Title title="Categories" />
+            <Categories selectedId={selectedId} setSelectedId={setSelectedId} />
+            <Title title="Items" />
+          </>
+        }
+        renderItem={({ item, index }) => {
+          return <Item {...item} onPress={() => navigateDetails(index)} />;
+        }}
+        keyExtractor={(item) => item.name}
+        numColumns={2}
+        columnWrapperStyle={styles.listView}
+      />
     </SafeAreaLayout>
   );
 };

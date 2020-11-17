@@ -12,23 +12,10 @@ import {
   ItemDetailsScreen,
 } from "../screens/item/ItemDetailsScreen";
 
-type ItemNavigatorParams = {
+export type ItemNavigatorParams = {
   [AppRoute.ITEM]: undefined;
   [AppRoute.ITEM_DETAILS]: ItemDetailScreenProps;
 };
-
-export interface ItemScreenProps {
-  navigation: CompositeNavigationProp<
-    ItemTabNavigationProp,
-    StackNavigationProp<ItemNavigatorParams, AppRoute.ITEM>
-  >;
-  route: RouteProp<ItemNavigatorParams, AppRoute.ITEM>;
-}
-
-export interface ItemDetailsScreenProps {
-  navigation: StackNavigationProp<ItemNavigatorParams, AppRoute.ITEM_DETAILS>;
-  route: RouteProp<ItemNavigatorParams, AppRoute.ITEM_DETAILS>;
-}
 
 const Stack = createStackNavigator<ItemNavigatorParams>();
 

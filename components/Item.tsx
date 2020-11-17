@@ -46,6 +46,12 @@ export type Item = {
   category: string;
   price: number;
   onPress?: any;
+  modelYear?: string;
+  mileage?: number;
+  displacement?: string;
+  hasRepairHistory?: boolean;
+  hasWarranty?: boolean;
+  mission?: string;
   description?: string;
 };
 
