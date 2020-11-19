@@ -11,14 +11,14 @@ import {
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
 import { TodoNavigator } from "./todo.navigator";
-import { ProfileNavigator } from "./profile.navigator";
+import { ItemNavigator } from "./item.navigator";
 import { AppRoute } from "./AppRoutes";
 import { AboutScreen, HomeDrawer, HomeTabBar } from "../screens/home";
 import {
+  CarIcon,
   HomeIcon,
   InfoIcon,
   LayoutIcon,
-  PersonIcon,
   SettingIcon,
 } from "../assets/icons";
 import { SettingScreen } from "../screens/setting";
@@ -30,7 +30,7 @@ type HomeDrawerNavigatorParams = {
 
 type HomeBottomTabsNavigatorParams = {
   [AppRoute.TODO]: undefined;
-  [AppRoute.PROFILE]: undefined;
+  [AppRoute.ITEM]: undefined;
   [AppRoute.SETTING]: undefined;
 };
 
@@ -39,8 +39,8 @@ export type TodoTabNavigationProp = CompositeNavigationProp<
   DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>
 >;
 
-export type ProfileTabNavigationProp = CompositeNavigationProp<
-  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.PROFILE>,
+export type ItemTabNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<HomeBottomTabsNavigatorParams, AppRoute.ITEM>,
   DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.HOME>
 >;
 
@@ -84,9 +84,9 @@ const HomeBottomNavigator = (): React.ReactElement => (
       options={{ title: "TODO", tabBarIcon: LayoutIcon }}
     />
     <BottomTab.Screen
-      name={AppRoute.PROFILE}
-      component={ProfileNavigator}
-      options={{ title: "PROFILE", tabBarIcon: PersonIcon }}
+      name={AppRoute.ITEM}
+      component={ItemNavigator}
+      options={{ title: "ITEM", tabBarIcon: CarIcon }}
     />
     <BottomTab.Screen
       name={AppRoute.SETTING}

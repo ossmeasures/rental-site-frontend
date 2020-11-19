@@ -60,3 +60,7 @@ export const SearchIcon = (props): IconElement => (
 export const SettingIcon = (props): IconElement => (
   <Icon {...props} name="settings-2-outline" />
 );
+
+export const CarIcon = (props): IconElement => (
+  <Icon {...props} name="car-outline" />
+);
