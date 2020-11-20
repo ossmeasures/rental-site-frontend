@@ -1,4 +1,4 @@
-import { Item } from "./Item";
+import { Item } from "../components/Item";
 
 export const items = [
   {

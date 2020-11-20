@@ -11,14 +11,15 @@ import {
 import { MenuIcon, SearchIcon } from "../../assets/icons";
 import { APP_NAME } from "../../constants";
 import { Categories } from "../../components/Categories";
-import { items as allItems } from "../../components/itemList";
+import { items as allItems } from "../../data/items";
 import { Title } from "../../components/Title";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { FlatList } from "react-native-gesture-handler";
 import { AppRoute } from "../../navigation/AppRoutes";
 import { Item } from "../../components/Item";
 import { CompositeNavigationProp, useNavigation } from "@react-navigation/core";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ItemTabNavigationProp } from "../../navigation/home.navigator";
+import { categories } from "../../data/categories";
 
 type NP = CompositeNavigationProp<
   ItemTabNavigationProp,
@@ -36,7 +37,32 @@ export const ItemScreen = (): SafeAreaLayoutElement => {
     setItems(filtered);
   };
 
-  const [selectedId, setSelectedId] = React.useState(1);
+  const [selectedId, setSelectedId] = React.useState(0);
+
+  // TODO クリーンアップ処理を正しく実装してメモリリークを抑える
+  React.useEffect(() => {
+    let loading = true;
+    const fetchAndSetItem = () => {
+      const ALL_CATEGORY = 0;
+      if (selectedId !== ALL_CATEGORY) {
+        const selectedCategory = categories.find(
+          (category) => category.id === selectedId
+        );
+        const filtered = allItems.filter(
+          (item) => item.category === selectedCategory.name
+        );
+        if (loading) {
+          setItems(filtered);
+        }
+      } else {
+        if (loading) {
+          setItems(allItems);
+        }
+      }
+    };
+    fetchAndSetItem();
+    return () => (loading = false);
+  }, [selectedId]);
 
   const navigateDetails = (itemIndex: number): void => {
     const { [itemIndex]: item } = items;
