@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/ossmeasures/rental-site-frontend)
+
 # [TypeScript Example](https://www.typescriptlang.org/)
 
 <p>
