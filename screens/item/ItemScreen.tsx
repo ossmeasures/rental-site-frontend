@@ -26,43 +26,48 @@ type NP = CompositeNavigationProp<
   StackNavigationProp<ItemNavigatorParams, AppRoute.ITEM>
 >;
 
+type FilterProps = { query: string; categoryId: number };
+const filterBy = (props: FilterProps) => {
+  const { query, categoryId } = props;
+  const ALL_CATEGORY = 0;
+
+  if (categoryId === ALL_CATEGORY) {
+    return allItems.filter((item) => item.name.includes(query));
+  }
+
+  const selectedCategory = categories.find((c) => c.id === categoryId);
+
+  return allItems
+    .filter((item) => item.name.includes(query))
+    .filter((item) => item.category === selectedCategory.name);
+};
+
+/**
+ * 重機の一覧画面
+ */
 export const ItemScreen = (): SafeAreaLayoutElement => {
   const [query, setQuery] = React.useState<string>("");
   const [items, setItems] = React.useState<Item[]>(allItems);
+  const [selectedCategoryId, setSelectedCategoryId] = React.useState(0);
+
   const navigation = useNavigation<NP>();
 
   const onChangeQuery = (query: string): void => {
     setQuery(query);
-    const filtered = allItems.filter((item) => item.name.includes(query));
+    const filtered = filterBy({ query, categoryId: selectedCategoryId });
     setItems(filtered);
   };
 
-  const [selectedId, setSelectedId] = React.useState(0);
-
-  // TODO クリーンアップ処理を正しく実装してメモリリークを抑える
+  // TODO: クリーンアップ処理を正しく実装してメモリリークを抑える
   React.useEffect(() => {
     let loading = true;
     const fetchAndSetItem = () => {
-      const ALL_CATEGORY = 0;
-      if (selectedId !== ALL_CATEGORY) {
-        const selectedCategory = categories.find(
-          (category) => category.id === selectedId
-        );
-        const filtered = allItems.filter(
-          (item) => item.category === selectedCategory.name
-        );
-        if (loading) {
-          setItems(filtered);
-        }
-      } else {
-        if (loading) {
-          setItems(allItems);
-        }
-      }
+      const filtered = filterBy({ query, categoryId: selectedCategoryId });
+      if (loading) setItems(filtered);
     };
     fetchAndSetItem();
     return () => (loading = false);
-  }, [selectedId]);
+  }, [selectedCategoryId]);
 
   const navigateDetails = (itemIndex: number): void => {
     const { [itemIndex]: item } = items;
@@ -90,7 +95,10 @@ export const ItemScreen = (): SafeAreaLayoutElement => {
               onChangeText={onChangeQuery}
             />
             <Title title="Categories" />
-            <Categories selectedId={selectedId} setSelectedId={setSelectedId} />
+            <Categories
+              selectedId={selectedCategoryId}
+              setSelectedId={setSelectedCategoryId}
+            />
             <Title title="Items" />
           </>
         }
