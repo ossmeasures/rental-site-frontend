@@ -1,0 +1,9 @@
+tasks:
+  - init: yarn install
+    command: yarn start --tunnel
+ports:
+  - port: 3000
+  - port: 19002
+  - port: 19000
+  - port: 19001
+  
