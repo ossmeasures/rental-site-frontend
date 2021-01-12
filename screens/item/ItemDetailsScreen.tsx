@@ -6,6 +6,7 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { EdgeInsets, useSafeArea } from "react-native-safe-area-context";
 import { ImageOverlay } from "../../components/ImageOverlay";
 import { Item } from "../../components/Item";
+import RentalActionModal from "../../components/RentalActionModal";
 
 import { SafeAreaLayoutElement } from "../../components/SafeAreaLayout";
 import { Toolbar } from "../../components/Toolbar";
@@ -53,9 +54,7 @@ export const ItemDetailsScreen = (): SafeAreaLayoutElement => {
             <Text style={styles.description}>ミッション　{item.mission}</Text>
           </View>
         </ScrollView>
-        <Button style={styles.button} onPress={navigation.goBack}>
-          レンタルする
-        </Button>
+        <RentalActionModal />
       </Layout>
     </React.Fragment>
   );
