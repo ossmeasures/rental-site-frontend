@@ -9,6 +9,9 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
+import { FormInput } from "./FormInput";
+import { Formik } from "formik";
+import { RentalActionData, RentalActionSchema } from "../data/rental-action.model";
 const ITEM_WIDTH = Dimensions.get("window").width;
 const ITEM_HEIGHT = Dimensions.get("window").height;
 
@@ -26,7 +29,30 @@ const RentalActionModal = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+            <Text style={styles.modalText}>レンタル手続き</Text>
+
+            <Text style={styles.modalText}>位置情報</Text>
+            
+            <View ><Text style={styles.modalText}>郵便番号</Text>
+            <Formik initialValues={RentalActionData.empty()}
+          validationSchema={RentalActionSchema}
+          onSubmit={() => alert("登録処理です")}
+        >
+          <FormInput
+        id="postalCode"
+        style={styles.formControl}
+        placeholder="例）9999999"
+        keyboardType="number-pad"
+      /></Formik>
+        </View>
+            <View ><Text style={styles.modalText}>都道府県</Text><Text>□</Text></View>
+            <View ><Text style={styles.modalText}>市区町村</Text><Text>□</Text></View>
+            <View ><Text style={styles.modalText}>番地</Text><Text>□</Text></View>
+            <View ><Text style={styles.modalText}>建物名</Text><Text>□</Text></View>
+
+
+            <Text style={styles.modalText}>レンタル期間</Text><Text>□</Text>
+            
 
             <TouchableHighlight
               style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
@@ -96,6 +122,9 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginRight: 8,
   },
+  formControl:{
+      marginVertical: 4,
+  }
 });
 
 export default RentalActionModal;

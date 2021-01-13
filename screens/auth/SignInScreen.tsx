@@ -9,6 +9,8 @@ import { EyeIcon, EyeOffIcon } from "../../assets/icons";
 import { SignInData, SignInSchema } from "../../data/sign-in.model";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { SignInButton } from "../../components/button/DesignedButtons";
+import RentalActionModal from "../../components/RentalActionModal";
+
 
 export const SignInScreen = (props: SignInScreenProps) => {
   const [shouldRemember, setShouldRemember] = React.useState<boolean>(false);
@@ -96,6 +98,7 @@ export const SignInScreen = (props: SignInScreenProps) => {
         >
           {renderForm}
         </Formik>
+        <RentalActionModal />
         <Button
           style={styles.noAccountButton}
           appearance="ghost"
