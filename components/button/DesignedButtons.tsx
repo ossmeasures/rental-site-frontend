@@ -1,6 +1,7 @@
 import React from "react";
 import { ViewStyle } from "react-native";
 import { SubmitButton } from "./SubmitButton";
+import { UnSubmitButton } from "./UnSubmitButton";
 
 type ActionButtonProps = {
   onPress: (event: React.FormEvent<HTMLFormElement> | any) => void;
@@ -17,4 +18,12 @@ export const SignInButton = (props: Partial<ActionButtonProps>) => (
 
 export const SignUpButton = (props: Partial<ActionButtonProps>) => (
   <SubmitButton {...props}>SIGN UP</SubmitButton>
+);
+
+export const RentalActionButton = (props: Partial<ActionButtonProps>) => (
+  <SubmitButton {...props}>レンタルする</SubmitButton>
+);
+
+export const RentalCancelButton = (props: Partial<ActionButtonProps>) => (
+  <UnSubmitButton {...props}>やめる</UnSubmitButton>
 );

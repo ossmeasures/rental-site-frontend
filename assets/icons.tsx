@@ -1,6 +1,12 @@
 import React from "react";
 import { Icon, IconElement } from "@ui-kitten/components";
 
+// https://akveo.github.io/eva-icons/#/
+
+export const CloseIcon = (props): IconElement => (
+  <Icon {...props} name="close-outline" />
+);
+
 export const BackIcon = (props): IconElement => (
   <Icon {...props} name="arrow-back" />
 );
