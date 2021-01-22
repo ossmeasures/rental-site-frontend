@@ -11,57 +11,89 @@ import {
   RentalActionButton,
   RentalCancelButton,
 } from "./button/DesignedButtons";
+import { storage } from "../storage/storage";
 const ITEM_WIDTH = Dimensions.get("window").width;
 const ITEM_HEIGHT = Dimensions.get("window").height;
+
+const onFormSubmit = (values: RentalActionData): void => {
+  alert(values.postalCode);
+  storage.save({
+    key: "rental",
+    id: new Date().toISOString(),
+    data: values,
+  });
+  storage
+    .getAllDataForKey("rental")
+    .then((ret) => {
+      // ロードに成功したら
+      // alert(ret.name + " is " + ret.status);
+      console.log(ret);
+    })
+    .catch((err) => {
+      // ロードに失敗したら
+      console.warn(err.message);
+      switch (err.name) {
+        case "NotFoundError":
+          // 見つかんなかった場合の処理を書こう
+          break;
+        case "ExpiredError":
+          // キャッシュ切れの場合の処理を書こう
+          break;
+      }
+    });
+};
 
 const RentalActionModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const renderForm = (props: FormikProps<RentalActionData>) => {
     return (
       <React.Fragment>
-        <FormInput
-          id="postalCode"
-          label="郵便番号"
-          style={styles.formControl}
-          placeholder="例）9999999"
-          keyboardType="number-pad"
-          maxLength={7}
-        />
+        <View style={styles.formInputView}>
+          <FormInput
+            id="postalCode"
+            label="郵便番号"
+            style={styles.formControl}
+            placeholder="例）9999999"
+            keyboardType="number-pad"
+            maxLength={7}
+          />
 
-        <FormInput
-          id="prefecture"
-          label="都道府県"
-          style={styles.formControl}
-          placeholder="例）東京都"
-          keyboardType="default"
-          maxLength={200}
-        />
+          <FormInput
+            id="prefecture"
+            label="都道府県"
+            style={styles.formControl}
+            placeholder="例）東京都"
+            keyboardType="default"
+            maxLength={200}
+          />
 
-        <FormInput
-          id="municipality"
-          label="市区町村"
-          style={styles.formControl}
-          placeholder="例）江東区東陽町"
-          keyboardType="default"
-          maxLength={200}
-        />
+          <FormInput
+            id="municipality"
+            label="市区町村"
+            style={styles.formControl}
+            placeholder="例）江東区東陽町"
+            keyboardType="default"
+            maxLength={200}
+          />
 
-        <FormInput
-          id="address"
-          label="番地"
-          style={styles.formControl}
-          placeholder="例）１−２−１"
-          keyboardType="default"
-          maxLength={200}
-        />
-        <FormInput
-          id="buildingName"
-          label="建物名"
-          style={styles.formControl}
-          placeholder="例）〇〇ビル３階３０２号"
-          keyboardType="default"
-          maxLength={200}
-        />
+          <FormInput
+            id="address"
+            label="番地"
+            style={styles.formControl}
+            placeholder="例）１−２−１"
+            keyboardType="default"
+            maxLength={200}
+          />
+          <FormInput
+            id="buildingName"
+            label="建物名"
+            style={styles.formControl}
+            placeholder="例）〇〇ビル３階３０２号"
+            keyboardType="default"
+            maxLength={200}
+          />
+        </View>
+        <RentalActionButton style={{ flex: 3 }} onPress={props.handleSubmit} />
       </React.Fragment>
     );
   };
@@ -78,7 +110,8 @@ const RentalActionModal = () => {
               <Formik
                 initialValues={RentalActionData.empty()}
                 validationSchema={RentalActionSchema}
-                onSubmit={() => alert("登録処理です")}
+                // onSubmit={() => alert("登録処理です")}
+                onSubmit={onFormSubmit}
               >
                 {renderForm}
               </Formik>
@@ -89,12 +122,6 @@ const RentalActionModal = () => {
                   style={{ flex: 1, marginRight: 10 }}
                   onPress={() => {
                     setModalVisible(!modalVisible);
-                  }}
-                />
-                <RentalActionButton
-                  style={{ flex: 3 }}
-                  onPress={() => {
-                    alert("レンタル処理を受け付けました");
                   }}
                 />
               </View>
@@ -170,6 +197,12 @@ const styles = StyleSheet.create({
   },
   formControl: {
     marginVertical: 4,
+  },
+  formInputView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginTop: 22,
   },
 });
 

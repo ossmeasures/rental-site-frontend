@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
 });
 
 export type Item = {
+  id: string;
   name: string;
   image: ImageSourcePropType;
   category: string;

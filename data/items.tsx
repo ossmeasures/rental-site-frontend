@@ -2,6 +2,7 @@ import { Item } from "../components/Item";
 
 export const items = [
   {
+    id: "1",
     name: "2tダンプ",
     image: require("../assets/0f62134bf3e8ef07bc0f4f43076a3204.jpg"),
     category: "トラック",
@@ -16,6 +17,7 @@ export const items = [
       "準中型ＭＴ免許ＯＫ　２トン２ｔベース１．５トン１．５ｔ積載　パネルバン左扉ありリア観音扉　全低床　ディーゼルＮＯＸｐｍ法適合車　車検時記録簿１６枚あり　全高２７３ｃｍトラック　３人乗り　ＭＴ５速",
   },
   {
+    id: "2",
     name: "2tトラッククレーン",
     image: require("../assets/1afd850e68d4297b622ab28d01a4b2ac.jpg"),
     category: "クレーン",
@@ -29,6 +31,7 @@ export const items = [
     description: "説明文",
   },
   {
+    id: "3",
     name: "ワンボックス",
     image: require("../assets/2b45c503eec0ec1bd12c27d911b2e230.jpg"),
     category: "バン",
@@ -42,6 +45,7 @@ export const items = [
     description: "説明文",
   },
   {
+    id: "4",
     name: "油圧ショベルA型",
     image: require("../assets/8ce94c3bf2b79dbf5c771da11e08941f.jpg"),
     category: "油圧ショベル",
@@ -55,6 +59,7 @@ export const items = [
     description: "説明文",
   },
   {
+    id: "5",
     name: "カニクレーン",
     image: require("../assets/22b080faae9bb2bf646ee92ef42b2b4c.jpg"),
     category: "クレーン",
@@ -68,6 +73,7 @@ export const items = [
     description: "説明文",
   },
   {
+    id: "6",
     name: "軽トラック",
     image: require("../assets/75fca98d5ab45ffc1e5d02f4e25435c0.jpg"),
     category: "トラック",
@@ -81,6 +87,7 @@ export const items = [
     description: "説明文",
   },
   {
+    id: "7",
     name: "トラック d",
     image: require("../assets/77cf4f40da07636d792d5b9246648232.jpg"),
     category: "トラック",
@@ -94,6 +101,7 @@ export const items = [
     description: "説明文",
   },
   {
+    id: "8",
     name: "トラック e",
     image: require("../assets/338cabceba0d935585e0dfdf8ff6ed77.jpg"),
     category: "トラック",
@@ -107,6 +115,7 @@ export const items = [
     description: "説明文",
   },
   {
+    id: "9",
     name: "トラック f",
     image: require("../assets/338cabceba0d935585e0dfdf8ff6ed77.jpg"),
     category: "トラック",
