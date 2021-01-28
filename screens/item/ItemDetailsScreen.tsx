@@ -54,7 +54,7 @@ export const ItemDetailsScreen = (): SafeAreaLayoutElement => {
             <Text style={styles.description}>ミッション　{item.mission}</Text>
           </View>
         </ScrollView>
-        <RentalActionModal />
+        <RentalActionModal item={item} />
       </Layout>
     </React.Fragment>
   );
