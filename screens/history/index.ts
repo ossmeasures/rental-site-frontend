@@ -1,0 +1,1 @@
+export { HistoryDetailScreen } from "./HistoryDetailScreen";

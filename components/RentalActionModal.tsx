@@ -13,17 +13,22 @@ import {
 } from "./button/DesignedButtons";
 import { storage } from "../storage/storage";
 import { Item } from "./Item";
+import { useNavigation } from "@react-navigation/core";
+import { AppRoute } from "../navigation/AppRoutes";
 const ITEM_WIDTH = Dimensions.get("window").width;
 const ITEM_HEIGHT = Dimensions.get("window").height;
 
 const RentalActionModal = ({ item }: { item: Item }) => {
+  const navigation = useNavigation();
   const onFormSubmit = (values: RentalActionData): void => {
-    alert("レンタル注文を受け付けました");
     storage.save({
       key: "rental",
       id: new Date().toISOString(),
       data: { ...values, ...item },
     });
+    navigation.navigate(AppRoute.HISTORY_DETAIL, {item});
+    setModalVisible(false);
+    // alert("レンタル注文を受け付けました");
   };
 
   const [modalVisible, setModalVisible] = useState(false);

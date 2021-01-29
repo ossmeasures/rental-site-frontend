@@ -12,4 +12,5 @@ export enum AppRoute {
   ITEM_DETAILS = "Item Details",
   ABOUT = "About",
   SETTING = "Setting",
+  HISTORY_DETAIL ="History Detail",
 }
