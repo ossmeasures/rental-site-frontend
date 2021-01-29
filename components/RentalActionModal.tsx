@@ -12,38 +12,20 @@ import {
   RentalCancelButton,
 } from "./button/DesignedButtons";
 import { storage } from "../storage/storage";
+import { Item } from "./Item";
 const ITEM_WIDTH = Dimensions.get("window").width;
 const ITEM_HEIGHT = Dimensions.get("window").height;
 
-const onFormSubmit = (values: RentalActionData): void => {
-  alert(values.postalCode);
-  storage.save({
-    key: "rental",
-    id: new Date().toISOString(),
-    data: values,
-  });
-  storage
-    .getAllDataForKey("rental")
-    .then((ret) => {
-      // ロードに成功したら
-      // alert(ret.name + " is " + ret.status);
-      console.log(ret);
-    })
-    .catch((err) => {
-      // ロードに失敗したら
-      console.warn(err.message);
-      switch (err.name) {
-        case "NotFoundError":
-          // 見つかんなかった場合の処理を書こう
-          break;
-        case "ExpiredError":
-          // キャッシュ切れの場合の処理を書こう
-          break;
-      }
+const RentalActionModal = ({ item }: { item: Item }) => {
+  const onFormSubmit = (values: RentalActionData): void => {
+    alert("レンタル注文を受け付けました");
+    storage.save({
+      key: "rental",
+      id: new Date().toISOString(),
+      data: { ...values, ...item },
     });
-};
+  };
 
-const RentalActionModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const renderForm = (props: FormikProps<RentalActionData>) => {
     return (
