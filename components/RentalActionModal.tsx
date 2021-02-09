@@ -22,11 +22,11 @@ const RentalActionModal = ({ item }: { item: Item }) => {
   const navigation = useNavigation();
   const onFormSubmit = (values: RentalActionData): void => {
     storage.save({
-      key: "rental",
+      key: "rental1",
       id: new Date().toISOString(),
       data: { ...values, ...item },
     });
-    navigation.navigate(AppRoute.HISTORY_DETAIL, {item});
+    navigation.navigate(AppRoute.HISTORY_DETAIL, { item });
     setModalVisible(false);
     // alert("レンタル注文を受け付けました");
   };
