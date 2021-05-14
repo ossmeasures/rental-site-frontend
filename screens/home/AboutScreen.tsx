@@ -106,13 +106,13 @@ export const data: (RentalActionData & Item)[] = [
 export const AboutScreen = (props: AboutScreenProps): SafeAreaLayoutElement => {
   const isFocused = useIsFocused();
 
-  const [rentalItems, setRentalItems] = useState<RentalActionData[]>(data);
+  const [rentalItems, setRentalItems] = useState<RentalActionData[]>();
   const fetchRentalItems = () => {
     storage
-      .getAllDataForKey("rental")
+      .getAllDataForKey("rentalC")
       .then((ret: RentalActionData[]) => {
         console.log(ret);
-        const items = [...rentalItems, ...ret];
+        const items = [...ret];
         setRentalItems(items);
       })
       .catch((err) => {

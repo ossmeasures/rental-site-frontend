@@ -17,7 +17,7 @@ import { AboutScreen, HomeDrawer, HomeTabBar } from "../screens/home";
 import {
   CarIcon,
   HomeIcon,
-  InfoIcon,
+  EyeIcon,
   LayoutIcon,
   SettingIcon,
 } from "../assets/icons";
@@ -25,7 +25,7 @@ import { SettingScreen } from "../screens/setting";
 
 type HomeDrawerNavigatorParams = {
   [AppRoute.HOME]: undefined;
-  [AppRoute.ABOUT]: undefined;
+  [AppRoute.RENTAL_ITEMS]: undefined;
 };
 
 type HomeBottomTabsNavigatorParams = {
@@ -50,8 +50,11 @@ export type SettingTabNavigationProp = CompositeNavigationProp<
 >;
 
 export interface AboutScreenProps {
-  navigation: DrawerNavigationProp<HomeDrawerNavigatorParams, AppRoute.ABOUT>;
-  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.ABOUT>;
+  navigation: DrawerNavigationProp<
+    HomeDrawerNavigatorParams,
+    AppRoute.RENTAL_ITEMS
+  >;
+  route: RouteProp<HomeDrawerNavigatorParams, AppRoute.RENTAL_ITEMS>;
 }
 
 export type BottomHomeScreenProps = BottomTabBarProps & {
@@ -102,12 +105,12 @@ export const HomeNavigator = (): React.ReactElement => (
     <Drawer.Screen
       name={AppRoute.HOME}
       component={HomeBottomNavigator}
-      options={{ title: "Home", drawerIcon: HomeIcon }}
+      options={{ title: "RENTAL_ITEMS", drawerIcon: HomeIcon }}
     />
     <Drawer.Screen
-      name={AppRoute.ABOUT}
+      name={AppRoute.RENTAL_ITEMS}
       component={AboutScreen}
-      options={{ title: "About", drawerIcon: InfoIcon }}
+      options={{ title: "Rental Items", drawerIcon: EyeIcon }}
     />
   </Drawer.Navigator>
 );

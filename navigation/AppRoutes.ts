@@ -10,7 +10,7 @@ export enum AppRoute {
   TODO_DETAILS = "ToDo Details",
   ITEM = "Item",
   ITEM_DETAILS = "Item Details",
-  ABOUT = "About",
+  RENTAL_ITEMS = "Rental Items",
   SETTING = "Setting",
-  HISTORY_DETAIL ="History Detail",
+  HISTORY_DETAIL = "History Detail",
 }
